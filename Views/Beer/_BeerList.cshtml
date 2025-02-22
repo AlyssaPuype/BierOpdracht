@@ -1,0 +1,20 @@
+﻿<table>
+    <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Alcohol</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bier in Model)
+        {
+            <tr>
+                <td>@bier.Naam</td>
+                <td>@bier.Alcohol</td>
+                <td>@bier.Image</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

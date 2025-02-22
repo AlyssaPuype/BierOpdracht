@@ -1,0 +1,18 @@
+﻿<div>
+	<h1>Lijst bieren van brouwers</h1>
+	<h4>Brouwerij</h4>
+
+	<form method="post" asp-action="ShowBeers">
+		<div>
+			<select name="SelectedBrewery" class="form-control">
+				@foreach (var brewery in Model)
+				{
+					<option value ="@brewery.Naam">@brewery.Naam</option>
+				}
+			</select>
+		</div>
+		<button type="submit" class="btn btn-primary mt-2"> Show Beers</button>
+	</form>
+</div>
+
+<partial name="_BeerList"/>
