@@ -1,4 +1,5 @@
-﻿using BierOpdracht.DataDb;
+﻿using Azure.Core.Pipeline;
+using BierOpdracht.DataDb;
 using BierOpdracht.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,13 +26,17 @@ namespace BierOpdracht.Controllers
 
             }).ToList();
 
+            ViewBag.Breweries = _context.Breweries
+        .Select(b => new { b.Brouwernr, b.Naam })
+        .ToList();
+
             return View(BeerVMs);
         }
 
-        public IActionResult ShowBeers(int SelectedBrewery)
+        public IActionResult ShowBeers(String SelectedBrewery)
         {
             var filteredBeers = _context.Beers
-                .Where(b => b.Brouwernr == SelectedBrewery)
+                .Where(b => b.Brewery.Naam == SelectedBrewery)
                 .Select(b => new BeerVM
                 {
                     Biernr = b.Biernr,
